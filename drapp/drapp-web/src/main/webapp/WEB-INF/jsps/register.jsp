@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Registration</title>
+<title>Drapp|Registration</title>
 </head>
 <body>
     <div align="center">
