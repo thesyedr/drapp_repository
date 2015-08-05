@@ -5,11 +5,12 @@
   <artifactId>drapp</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+  <!--DRAPP CONTAINS THE FOLLOWING 4 MODULES -->
   <modules>
   	<module>drapp-repository</module>
   	<module>drapp-service</module>
-    <module>drapp-web</module>
-    <module>drapp-rest</module>
+    	<module>drapp-web</module>
+    	<module>drapp-rest</module>
   </modules>
   
   
