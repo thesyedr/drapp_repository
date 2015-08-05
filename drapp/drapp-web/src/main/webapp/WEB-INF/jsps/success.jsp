@@ -8,6 +8,7 @@
 </head>
 <body>
 <h3>Enrollement successful</h3>
-Please click on the following link<a href="register">New Registration</a>
+Please click on the following link<a href="register">New Registration</a> 
+testing the changes on github
 </body>
 </html>
