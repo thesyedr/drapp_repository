@@ -1,0 +1,137 @@
+<beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:repository="http://www.springframework.org/schema/data/repository"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/data/repository http://www.springframework.org/schema/data/repository/spring-repository.xsd
+        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.dr.app.repo" />
+
+	<context:property-placeholder location="classpath:database.properties" />
+
+	
+
+
+
+	
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<bean
+		class="org.springframework.data.jpa.domain.support.AuditingBeanFactoryPostProcessor" />
+<!--
+	<jpa:auditing auditor-aware-ref="auditAwareBean" />
+
+	<bean id="auditAwareBean" class="com.suretouch.jpa.audit.DatabaseAuditor" />
+
+	<jpa:repositories base-package="com.suretouch.jpa.repository"
+		factory-class="com.suretouch.jpa.repository.factory.DefaultRepositoryFactoryBean" /> -->
+
+
+	 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${database.driver}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.user}" />
+		<property name="password" value="${database.password}" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="300" />
+		<!-- <property name="logAbandoned" value="${logAbandoned}" />
+		<property name="initialSize" value="${initialSize}" />
+		<property name="maxActive" value="${maxActive}" /> -->
+	</bean><!--
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+	  destroy-method="close">
+	  <property name="driverClass" value="${database.driver}" />
+	  <property name="jdbcUrl" value="${database.url}" />
+	  <property name="username" value="${database.user}" />
+	  <property name="password" value="${database.password}" />
+	  <property name="idleConnectionTestPeriodInMinutes" value="${database.idle.connection.testperiod.minutes}" />
+	  <property name="idleMaxAgeInMinutes" value="${database.idle.maxage.minutes}" />
+	  <property name="maxConnectionsPerPartition" value="${database.max.connections.partition}" />
+	  <property name="minConnectionsPerPartition" value="${database.min.connections.partition}" />
+	  <property name="partitionCount" value="${database.partition.count}" />
+	  <property name="acquireIncrement" value="${database.acquireIncrement}" />
+	  <property name="statementsCacheSize" value="${database.statements.cache.size}" />
+	  <property name="releaseHelperThreads" value="${database.release.helper.threads}" />
+	</bean>
+-->
+
+
+	<!-- Declare a JPA entityManagerFactory -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="jpaVendorAdapter" ref="jpaVendor" />
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+		</property>
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingResources">
+			<value>META-INF/persistance.xml</value>
+		</property>
+		<property name="persistenceUnitName" value="Drapp_pu" />
+		<property name="packagesToScan" value="com.dr.app.repo.entity" />
+		<property name="loadTimeWeaver">
+			<bean
+				class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				
+
+			<!-- 
+				<prop key="hibernate.connection.driver_class">org.springframework.jdbc.datasource.DriverManagerDataSource
+				</prop>
+				<prop key="hibernate.c3p0.min_size">0</prop>
+				<prop key="hibernate.c3p0.max_size">10</prop>
+				<prop key="hibernate.c3p0.timeout">60</prop>
+				<prop key="hibernate.c3p0.max_statements">50</prop>
+				<prop key="hibernate.c3p0.idle_test_period">60</prop>
+				<prop key="hibernate.c3p0.acquire_increment">1</prop>
+				<prop key="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider
+				</prop>
+				<prop key="hibernate.c3p0.numHelperThreads">10</prop>
+				<prop key="hibernate.cache.use_query_cache">false</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.generate_statistics">true</prop> -->
+
+			</props>
+		</property>
+	</bean>
+
+
+	<bean id="jpaVendor"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="showSql" value="true" />
+		<property name="generateDdl" value="true" />
+		<property name="database" value="MYSQL" />
+		<property name="databasePlatform" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+	</bean>
+
+	<!-- Declare a transaction manager -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	
+
+
+	
+</beans>

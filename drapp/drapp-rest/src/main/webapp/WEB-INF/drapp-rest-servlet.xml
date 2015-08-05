@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/jdbc 
+        http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+        http://cxf.apache.org/jaxrs
+ 		http://cxf.apache.org/schemas/jaxrs.xsd
+ 		http://cxf.apache.org/jaxws
+ 		http://cxf.apache.org/schemas/jaxws.xsd
+ 		http://www.springframework.org/schema/mvc
+ 		http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        ">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<context:component-scan base-package="com.dr.app.rest.*" />
+	<mvc:annotation-driven />
+	
+	<import resource="classpath:service.xml" />
+	<bean id="userService" class="com.dr.app.service.UserService"/>
+	
+	<!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+    p:location="/WEB-INF/jdbc.properties" />
+    
+    <bean id="dataSource"
+        class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+        p:driverClassName="${jdbc.driverClassName}"
+        p:url="${jdbc.databaseurl}" p:username="${jdbc.username}"
+        p:password="${jdbc.password}" />
+        
+     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource" />
+	    <property name="configLocation">
+	        <value>classpath:hibernate.cfg.xml</value>
+	    </property>
+	    <property name="hibernateProperties">
+	        <props>
+	            <prop key="hibernate.dialect">${jdbc.dialect}</prop>
+	            <prop key="hibernate.show_sql">true</prop>
+	        </props>
+	    </property>
+	</bean>
+    
+    <tx:annotation-driven />
+    <bean id="transactionManager"
+        class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean> -->
+
+	<!-- <jaxrs:server id="employeeService" address="/employeeservices">
+		<jaxrs:providers>
+			<bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+		</jaxrs:providers>
+		<jaxrs:serviceBeans>
+			<ref bean="cxfServiceImpl" />
+		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings>
+			<entry key="json" value="application/json" />
+		</jaxrs:extensionMappings>
+	</jaxrs:server> -->
+	
+	<!-- <jaxrs:server id="authServices" address="/auth">
+		<jaxrs:providers>
+			<bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+		</jaxrs:providers>
+		<jaxrs:serviceBeans>
+			<ref bean="authServiceImpl" />
+		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings>
+			<entry key="json" value="application/json" />
+		</jaxrs:extensionMappings>
+	</jaxrs:server> -->
+	
+	<jaxrs:server id="signupResource" address="/signup">
+		<jaxrs:providers>
+			<bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+		</jaxrs:providers>
+		<jaxrs:serviceBeans>
+			<ref bean="signupResourceImpl" />
+		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings>
+			<entry key="json" value="application/json" />
+		</jaxrs:extensionMappings>
+	</jaxrs:server>
+	
+	<!-- <jaxrs:server id="ticketServices" address="/ticket">
+		<jaxrs:providers>
+			<bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+		</jaxrs:providers>
+		<jaxrs:serviceBeans>
+			<ref bean="ticketServiceImpl" />
+		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings>
+			<entry key="json" value="application/json" />
+		</jaxrs:extensionMappings>
+	</jaxrs:server> -->
+
+	<bean id="signupResourceImpl" class="com.dr.app.rest.webresourceImpl.SignupResourceImpl"/>
+    <!-- <bean id="cxfServiceImpl" class="com.apachecxf.sdtportal.services.impl.CxfRestServiceImpl"/>
+    <bean id="authServiceImpl" class="com.apachecxf.sdtportal.services.impl.AuthServiceImpl"/>
+    <bean id="ticketServiceImpl" class="com.apachecxf.sdtportal.services.impl.TicketRestServiceImpl"/>
+     -->
+    
+   <!--  <bean id="employeeDao" class="com.apachecxf.sdtportal.doa.impl.EmployeeDao"/>    
+    <bean id="authServiceDao" class="com.apachecxf.sdtportal.doa.impl.AuthServiceDaoImpl"/>
+    <bean id="ticketDao" class="com.apachecxf.sdtportal.doa.impl.TicketDaoImpl"/>
+    
+    <bean id="ticketBuisnessService" class="com.apachecxf.sdfportal.buisness.services.TicketServiceImpl"/> 
+     <bean id="requestorBuisnessService" class="com.apachecxf.sdfportal.buisness.services.RequstorServicesImpl"/> -->  
+    
+    
+</beans>
