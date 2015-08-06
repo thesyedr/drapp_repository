@@ -10,10 +10,10 @@
 </head>
 <body>
     <div align="center">
-        <form:form action="register" method="post" commandName="user">
+        <form:form action="" method="post" commandName="user">
             <table border="0">
                 <tr>
-                    <td colspan="2" align="center"><h2> Registration</h2></td>
+                    <td colspan="2" align="center"><h2> User Registration Screen</h2></td>
                 </tr>
                 <tr>
                     <td>User Name:</td>
