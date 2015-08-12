@@ -40,21 +40,6 @@
         </property>
         <property name="defaultDataSource" ref="dataSource"/>
     </bean>
-    
-    <!-- <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitManager" ref="persistenceUnitManager"/>
-       <property name="persistenceUnitName" value="DrappService"/> 
-       <property name="packagesToScan" value="com.dr.app.repo.entity" />
-    </bean>
-
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory"/>
-    </bean>
-
-    <tx:annotation-driven transaction-manager="transactionManager"/> -->
-     
-	
-	<!-- <jdbc:embedded-database id="dataSource" /> -->
 	
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -76,12 +61,6 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean> 
 
-	<!-- Enable scheduling - used in InitDbService to initialize database each 
-		day -->
-<!-- 	<task:scheduler id="scheduler" />
-	<task:annotation-driven scheduler="scheduler" /> -->
-
 	<jpa:repositories base-package="com.dr.app.repo.repository" />
 	
-		
 </beans>
