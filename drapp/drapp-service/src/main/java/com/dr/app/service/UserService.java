@@ -17,12 +17,19 @@ public class UserService {
 	public int register(User user){
 		
 		int status = 0;
-		logger.info("Start of register methodd userId : "+user.getUserId());
-		user = userRepository.save(user);
-		logger.info("After user Repository call userId  :"+user.getUserId());
-		status = user.getUserId();
+		logger.info("Start of register methodd userId : "+user.getUserName());
+		logger.info("checking the user existsing the database or not "+user.getUserName());
+		String userName = userRepository.checkUserExists(user.getUserName());
+		if(userName == null){
+			user = userRepository.save(user);
+			logger.info("After user Repository call userId  :"+user.getUserId());
+			status = user.getUserId();
+
+		}else{
+			status = 0;
+			logger.info("User Already exists with the username : "+user.getUserName());
+		}
 		return status;
 		
 	}
-
 }

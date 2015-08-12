@@ -1,0 +1,1 @@
+create table patient(patientId int(5) not null AUTO_INCREMENT,patientName varchar(50) not null, PRIMARY KEY(patientId));
