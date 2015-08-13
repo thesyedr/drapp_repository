@@ -30,58 +30,9 @@
 	
 	<import resource="classpath:service.xml" />
 	<bean id="userService" class="com.dr.app.service.UserService"/>
+	<bean id="patientService" class="com.dr.app.service.PatientService"/>
+	<bean id="patientRequestConverters" class="com.dr.app.rest.converters.PatientRequestConverters"/>
 	
-	<!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-    p:location="/WEB-INF/jdbc.properties" />
-    
-    <bean id="dataSource"
-        class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
-        p:driverClassName="${jdbc.driverClassName}"
-        p:url="${jdbc.databaseurl}" p:username="${jdbc.username}"
-        p:password="${jdbc.password}" />
-        
-     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-	    <property name="dataSource" ref="dataSource" />
-	    <property name="configLocation">
-	        <value>classpath:hibernate.cfg.xml</value>
-	    </property>
-	    <property name="hibernateProperties">
-	        <props>
-	            <prop key="hibernate.dialect">${jdbc.dialect}</prop>
-	            <prop key="hibernate.show_sql">true</prop>
-	        </props>
-	    </property>
-	</bean>
-    
-    <tx:annotation-driven />
-    <bean id="transactionManager"
-        class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean> -->
-
-	<!-- <jaxrs:server id="employeeService" address="/employeeservices">
-		<jaxrs:providers>
-			<bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
-		</jaxrs:providers>
-		<jaxrs:serviceBeans>
-			<ref bean="cxfServiceImpl" />
-		</jaxrs:serviceBeans>
-		<jaxrs:extensionMappings>
-			<entry key="json" value="application/json" />
-		</jaxrs:extensionMappings>
-	</jaxrs:server> -->
-	
-	<!-- <jaxrs:server id="authServices" address="/auth">
-		<jaxrs:providers>
-			<bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
-		</jaxrs:providers>
-		<jaxrs:serviceBeans>
-			<ref bean="authServiceImpl" />
-		</jaxrs:serviceBeans>
-		<jaxrs:extensionMappings>
-			<entry key="json" value="application/json" />
-		</jaxrs:extensionMappings>
-	</jaxrs:server> -->
 	
 	<jaxrs:server id="signupResource" address="/signup">
 		<jaxrs:providers>
@@ -95,30 +46,20 @@
 		</jaxrs:extensionMappings>
 	</jaxrs:server>
 	
-	<!-- <jaxrs:server id="ticketServices" address="/ticket">
+	<jaxrs:server id="patientResource" address="/PatientService">
 		<jaxrs:providers>
 			<bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
 		</jaxrs:providers>
 		<jaxrs:serviceBeans>
-			<ref bean="ticketServiceImpl" />
+			<ref bean="patientResourceImpl" />
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings>
 			<entry key="json" value="application/json" />
 		</jaxrs:extensionMappings>
-	</jaxrs:server> -->
-
+	</jaxrs:server>
+	
 	<bean id="signupResourceImpl" class="com.dr.app.rest.webresourceImpl.SignupResourceImpl"/>
-    <!-- <bean id="cxfServiceImpl" class="com.apachecxf.sdtportal.services.impl.CxfRestServiceImpl"/>
-    <bean id="authServiceImpl" class="com.apachecxf.sdtportal.services.impl.AuthServiceImpl"/>
-    <bean id="ticketServiceImpl" class="com.apachecxf.sdtportal.services.impl.TicketRestServiceImpl"/>
-     -->
-    
-   <!--  <bean id="employeeDao" class="com.apachecxf.sdtportal.doa.impl.EmployeeDao"/>    
-    <bean id="authServiceDao" class="com.apachecxf.sdtportal.doa.impl.AuthServiceDaoImpl"/>
-    <bean id="ticketDao" class="com.apachecxf.sdtportal.doa.impl.TicketDaoImpl"/>
-    
-    <bean id="ticketBuisnessService" class="com.apachecxf.sdfportal.buisness.services.TicketServiceImpl"/> 
-     <bean id="requestorBuisnessService" class="com.apachecxf.sdfportal.buisness.services.RequstorServicesImpl"/> -->  
-    
-    
+	<bean id="patientResourceImpl" class="com.dr.app.rest.webresourceImpl.PatientEnrollementResourceImpl"/>
+     
+	    
 </beans>
