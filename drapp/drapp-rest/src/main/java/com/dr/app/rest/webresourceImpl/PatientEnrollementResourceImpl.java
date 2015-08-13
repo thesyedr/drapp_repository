@@ -5,6 +5,8 @@ import javax.ws.rs.core.Response;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.dr.app.repo.entity.Contacts;
+import com.dr.app.repo.entity.Insurance;
 import com.dr.app.repo.entity.Patient;
 import com.dr.app.rest.converters.PatientRequestConverters;
 import com.dr.app.rest.requests.PatientEnrollementRequest;
@@ -26,7 +28,9 @@ public class PatientEnrollementResourceImpl implements PatientResource{
 		
 		logger.info("Start of PatientEnrollement service");
 		Patient patient = patientRequestConverters.getPatientFromPatientWebRequest(patientEnrollementRequest);
-		int status = patientService.patientEnrollement(patient);
+		Contacts contacts = patientRequestConverters.getPatientContacts(patientEnrollementRequest);
+		Insurance insurance = patientRequestConverters.getPatientInsuranceDetails(patientEnrollementRequest);
+		int status = patientService.patientEnrollement(patient,contacts,insurance);
 		DrResponse response = new DrResponse();
 		if(status > 0){
 			response.setStatus(200);

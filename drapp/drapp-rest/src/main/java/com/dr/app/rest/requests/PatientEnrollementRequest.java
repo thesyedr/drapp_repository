@@ -3,35 +3,34 @@ package com.dr.app.rest.requests;
 public class PatientEnrollementRequest {
 	
 	private String patientName;
-	private String emailId;
-	private Integer homePhone;
-	private Integer cellPhone;
+	private Integer patientId;
+	private PatientContactRequest patientContacts;
+	private InsuranceWebRequest insuranceDetails;
 	
-	
+	public Integer getPatientId() {
+		return patientId;
+	}
+	public void setPatientId(Integer patientId) {
+		this.patientId = patientId;
+	}
 	public String getPatientName() {
 		return patientName;
 	}
 	public void setPatientName(String patientName) {
 		this.patientName = patientName;
 	}
-	public String getEmailId() {
-		return emailId;
+	public PatientContactRequest getPatientContacts() {
+		return patientContacts;
 	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+	public void setPatientContacts(PatientContactRequest patientContacts) {
+		this.patientContacts = patientContacts;
 	}
-	public Integer getHomePhone() {
-		return homePhone;
+	public InsuranceWebRequest getInsuranceDetails() {
+		return insuranceDetails;
 	}
-	public void setHomePhone(Integer homePhone) {
-		this.homePhone = homePhone;
+	public void setInsuranceDetails(InsuranceWebRequest insuranceDetails) {
+		this.insuranceDetails = insuranceDetails;
 	}
-	public Integer getCellPhone() {
-		return cellPhone;
-	}
-	public void setCellPhone(Integer cellPhone) {
-		this.cellPhone = cellPhone;
-	}
-
+	
 	
 }
