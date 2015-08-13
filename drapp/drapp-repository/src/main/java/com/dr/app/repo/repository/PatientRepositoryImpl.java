@@ -2,13 +2,20 @@ package com.dr.app.repo.repository;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import com.dr.app.repo.entity.Contacts;
 import com.dr.app.repo.entity.Patient;
 
-public class PatentRepositoryImpl implements PatientRepository{
+public class PatientRepositoryImpl implements PatientRepository{
+	
+	@PersistenceContext
+    protected EntityManager entityManager;
 
 	public void deleteAllInBatch() {
 		// TODO Auto-generated method stub
@@ -93,6 +100,16 @@ public class PatentRepositoryImpl implements PatientRepository{
 	public <S extends Patient> S save(S arg0) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public int savePatientDetails(Patient patient){
+		System.out.println("Start of savePatientDetails...");
+		//patient.setContacts(contacts);
+		//contacts.setPatient(patient);
+		//entityManager.persist(contacts);
+		entityManager.persist(patient);
+		System.out.println("Insertion of patient and contact details...");
+		return 1;
 	}
 
 }

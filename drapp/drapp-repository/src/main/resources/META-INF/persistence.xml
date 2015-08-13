@@ -7,6 +7,8 @@
 		 <provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>com.dr.app.repo.entity.User</class>
 		<class>com.dr.app.repo.entity.Patient</class>
+		<class>com.dr.app.repo.entity.Contacts</class>
+		<class>com.dr.app.repo.entity.Insurance</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/drapp" />
