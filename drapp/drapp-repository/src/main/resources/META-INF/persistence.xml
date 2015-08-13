@@ -6,6 +6,7 @@
 		transaction-type="RESOURCE_LOCAL">
 		 <provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>com.dr.app.repo.entity.User</class>
+		<class>com.dr.app.repo.entity.Patient</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/drapp" />
