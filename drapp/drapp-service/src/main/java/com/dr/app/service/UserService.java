@@ -2,18 +2,21 @@ package com.dr.app.service;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dr.app.repo.entity.User;
 import com.dr.app.repo.repository.UserRepository;
 
-
+@Service("userService")
+@Transactional(readOnly = true)
 public class UserService {
 	
 	public static Logger logger = Logger.getLogger(UserService.class);
-	
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Transactional(readOnly=false)
 	public int register(User user){
 		
 		int status = 0;
