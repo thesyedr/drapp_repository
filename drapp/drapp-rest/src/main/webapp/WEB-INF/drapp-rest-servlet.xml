@@ -46,6 +46,7 @@
 		</jaxrs:extensionMappings>
 	</jaxrs:server>
 	
+	<!-- PatientService configuration -->
 	<jaxrs:server id="patientResource" address="/PatientService">
 		<jaxrs:providers>
 			<bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
