@@ -34,10 +34,10 @@ public class PatientEnrollementResourceImpl implements PatientResource{
 		DrResponse response = new DrResponse();
 		if(status > 0){
 			response.setStatus(200);
-			response.setMessage("Patient Enrollement Succesfull");
+			response.setMessage("Patient Enrollement/Registration is  Succesfull ");
 		}else {
 			response.setStatus(400);
-			response.setMessage("Patient Enrollement Failed");
+			response.setMessage("Patient Enrollement/Registration Failed");
 		}
 		return Response.ok(response).build();
 	}
