@@ -43,7 +43,7 @@ public class PatientService {
 		return 0;
 	}
 	
-	@Transactional(readOnly=false)
+	@Transactional(readOnly=true)
 	public Patient getPatientRecordById(Integer patientId){
 		logger.info("getPatientRecordById : "+patientId);
 		Patient patient = patientRepository.findOne(patientId);
@@ -51,6 +51,7 @@ public class PatientService {
 		return patient;
 	}
 	
+	@Transactional(readOnly=true)
 	public List<Patient> getAllAvailablePatients(){
 		logger.info("Fetching the available patient from the database");
 		List<Patient> patientsList = patientRepository.findAll();
