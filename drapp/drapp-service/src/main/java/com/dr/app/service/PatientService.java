@@ -10,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dr.app.repo.entity.Contacts;
 import com.dr.app.repo.entity.Insurance;
 import com.dr.app.repo.entity.Patient;
-import com.dr.app.repo.repository.PatientRepo;
-import com.dr.app.repo.repository.PatientRepositoryImpl;
 import com.dr.app.repo.repository.PatientRepository;
 
 
@@ -22,9 +20,6 @@ public class PatientService {
 	private static final Logger logger = Logger.getLogger(PatientService.class);
 	@Autowired
 	private PatientRepository patientRepository;
-	
-	@Autowired
-	private PatientRepo patientRepo;
 	
 	@Transactional(readOnly = false)
 	public int patientEnrollement(Patient patient,Contacts contacts,Insurance insurance){
