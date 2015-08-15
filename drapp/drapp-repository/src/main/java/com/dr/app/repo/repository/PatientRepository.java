@@ -7,5 +7,5 @@ import com.dr.app.repo.entity.Patient;
 
 public interface PatientRepository extends JpaRepository<Patient, Integer> {
 	
-	public int savePatientDetails(Patient patient);
+	//public int savePatientDetails(Patient patient);
 }

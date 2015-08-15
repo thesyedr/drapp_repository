@@ -12,9 +12,9 @@ import org.springframework.data.domain.Sort;
 import com.dr.app.repo.entity.Contacts;
 import com.dr.app.repo.entity.Patient;
 
-public class PatientRepositoryImpl implements PatientRepository{
+public class PatientRepositoryImpl {
 	
-	@PersistenceContext
+	/*@PersistenceContext
     protected EntityManager entityManager;
 
 	public void deleteAllInBatch() {
@@ -111,5 +111,5 @@ public class PatientRepositoryImpl implements PatientRepository{
 		System.out.println("Insertion of patient and contact details...");
 		return 1;
 	}
-
+*/
 }
