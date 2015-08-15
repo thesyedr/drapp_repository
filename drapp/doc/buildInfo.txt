@@ -1,0 +1,10 @@
+
+deployment of application in tomcat7
+
+mvn tomcat7:redeploy -Dtomcat.username=admin -Dtomcat.password=password
+
+NOTE:tomcat user must have "manager-script" roles in conf\tomcat-users.xml file
+
+
+  <role rolename="manager-script"/>
+<user username="admin" password="password" roles="manager-script" />

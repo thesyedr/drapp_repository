@@ -1,0 +1,78 @@
+
+
+http://www.flacom.com/jpa-hibernate-example-using-spring-framework-mvc-3-1/
+
+http://localhost:8080/sdtportal/rest/employeeservices/getemployee/
+
+http://im-lp-175.innomindshyd.com/sdtportal/rest/employeeservices/getemployee/
+
+
+http://localhost:8081/drapp-rest/signup/enroll
+
+Request :
+{
+    "username":"hello",
+    "password":"hello"
+}
+	
+Response:
+{"message":"success","status":200}
+
+http://localhost:8081/drapp-rest/PatientService/enroll
+
+Request:
+{
+    "patientName":"Patient1",
+    "patientContacts":{
+		"emailId":"patient1@gmail.com",
+		"homePhone":"1234567890",
+		"mobilePhone":"1234567890",
+		"patientCaregiver":"patient_Parent",
+		"street":"Main Street",
+		"state":"Telengana",
+		"city":"Hyderabad",
+		"zip":"500050",
+		"contactType":"email"
+		},
+	"insuranceDetails":{
+		"dateofBirth":"10/10/2001",
+		"insuranceProvider":"ICICI",
+		"insuranceNumber":1000,
+		"insuranceGroup":"General",
+		"employerName":"Wipro",
+		"employerAddress":"Wipro,Hyderabad"
+		
+	}
+}
+Response:
+{"message":"Patient Enrollement Succesfull","status":200}
+
+-------------------------------------------------------------------------
+desc : get patient details by patientId
+url : http://localhost:8080/drapp-rest/PatientService/patient/22
+
+method : get
+
+Response :
+
+{
+	"message":"Patient Record fetched successfully","status":200,"patientId":22,"patientName":"Patient1",
+	"patientContact":
+		{"contactId":24,"emailId":"patient1@gmail.com","homePhone":1234567890,"mobilePhone":1234567890,
+		"patientCaregiver":"patient_Parent","street":"Main  Street","state":"Telengana","city":"Hyderabad",
+		"zip":null,"contactType":"email","patient":null},
+	"patientInsurance":
+	{"insuranceId":9,"dateofBirth":"10/10/2001","insuranceProvider":"ICICI","insuranceNumber":1000,
+	"insuranceGroup":"General","employerName":"Wipro","employerAddress":"Wipro,Hyderabad","patient":null}
+}
+
+------------------------------------------------------------------------
+
+dec : get all the available patients details
+method : get
+url : http://localhost:8080/drapp-rest/PatientService/patients
+
+Response : 
+
+{"message":"Patients Record Recieved","status":200,"patients":[{"message":null,"status":0,"patientId":27,"patientName":"Patient1","patientContact":{"contactId":29,"emailId":"patient1@gmail.com","homePhone":1234567890,"mobilePhone":1234567890,"patientCaregiver":"patient_Parent","street":"Main Street","state":"Telengana","city":"Hyderabad","zip":null,"contactType":"email","patient":null},"patientInsurance":{"insuranceId":14,"dateofBirth":"10/10/2001","insuranceProvider":"ICICI","insuranceNumber":1000,"insuranceGroup":"General","employerName":"Wipro","employerAddress":"Wipro,Hyderabad","patient":null}},{"message":null,"status":0,"patientId":28,"patientName":"Patient2","patientContact":{"contactId":30,"emailId":"patient2@gmail.com","homePhone":1234567890,"mobilePhone":1234567890,"patientCaregiver":"patient_Parent","street":"Main Street","state":"Telengana","city":"Hyderabad","zip":null,"contactType":"email","patient":null},"patientInsurance":{"insuranceId":15,"dateofBirth":"10/10/2001","insuranceProvider":"ICICI","insuranceNumber":1000,"insuranceGroup":"General","employerName":"Wipro","employerAddress":"Wipro,Hyderabad","patient":null}},{"message":null,"status":0,"patientId":29,"patientName":"Patient3","patientContact":{"contactId":31,"emailId":"patient3@gmail.com","homePhone":1234567890,"mobilePhone":1234567890,"patientCaregiver":"patient_Parent","street":"Main Street","state":"Telengana","city":"Hyderabad","zip":null,"contactType":"email","patient":null},"patientInsurance":{"insuranceId":16,"dateofBirth":"10/10/2001","insuranceProvider":"ICICI","insuranceNumber":1000,"insuranceGroup":"General","employerName":"Wipro","employerAddress":"Wipro,Hyderabad","patient":null}}]}
+
