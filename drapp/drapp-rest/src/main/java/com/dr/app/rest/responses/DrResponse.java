@@ -1,6 +1,5 @@
 package com.dr.app.rest.responses;
 
-
 public class DrResponse {
 	
 	String message;
@@ -18,6 +17,5 @@ public class DrResponse {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
 	
 }
