@@ -22,8 +22,15 @@ public class PatientService {
 	@Autowired
 	private PatientRepository patientRepository;
 	
+	/**
+	 * 
+	 * @param patient
+	 * @param contacts
+	 * @param insurance
+	 * @return
+	 */
 	@Transactional(readOnly = false)
-	public int patientEnrollement(Patient patient,Contacts contacts,Insurance insurance){
+	public Patient patientEnrollement(Patient patient,Contacts contacts,Insurance insurance){
 		
 		logger.info("start of patient enrollement with patient name:"+patient.getPatientName());
 		patient.setContacts(contacts);
@@ -36,19 +43,28 @@ public class PatientService {
 		}
 		Patient patientResponse = null;
 		if(patient.getPatientId() != null){
+			logger.info("Updating the patient record for patient id : "+patient.getPatientId());
 			patientResponse = patientRepository.save(patient);
+			logger.info("Updated patient record for patient id : "+patient.getPatientId());
 		}else{
+			logger.info("Enrolling the new patient record....");
 			patientResponse = patientRepository.save(patient);
+			logger.info("Enrollement success for new patient record and generated patientId : "+patientResponse.getPatientId());
 		}
 		
 		if(patientResponse != null){
 			logger.info("Patient enrollement success for patient name : "+patient.getPatientName());
-			return 200;
+			return patientResponse;
 		}
 		logger.info("Patient enrollement failed for patient name : "+patient.getPatientName());
-		return 0;
+		return patientResponse;
 	}
 	
+	/**
+	 * 
+	 * @param patientId
+	 * @return
+	 */
 	@Transactional(readOnly=true)
 	public Patient getPatientRecordById(Integer patientId){
 		logger.info("getPatientRecordById : "+patientId);
@@ -57,6 +73,10 @@ public class PatientService {
 		return patient;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	@Transactional(readOnly=true)
 	public List<Patient> getAllAvailablePatients(){
 		logger.info("Fetching the available patient from the database");
@@ -65,6 +85,11 @@ public class PatientService {
 		return patientsList;
 	}
 	
+	/**
+	 * 
+	 * @param patientName
+	 * @return
+	 */
 	@Transactional(readOnly=true)
 	public Patient getPatientDetailsByName(String patientName){
 		

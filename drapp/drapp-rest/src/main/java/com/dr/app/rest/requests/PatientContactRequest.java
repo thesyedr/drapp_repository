@@ -2,6 +2,7 @@ package com.dr.app.rest.requests;
 
 public class PatientContactRequest {
 	
+	private Integer contactId;
 	private String emailId;
 	private Integer homePhone;
 	private Integer mobilePhone;
@@ -14,6 +15,13 @@ public class PatientContactRequest {
 	private String contactType;
 	
 	
+	
+	public Integer getContactId() {
+		return contactId;
+	}
+	public void setContactId(Integer contactId) {
+		this.contactId = contactId;
+	}
 	public String getEmailId() {
 		return emailId;
 	}

@@ -42,14 +42,23 @@ public class PatientEnrollementResourceImpl implements PatientResource{
 			insurance = patientRequestConverters.getPatientInsuranceDetails(patientEnrollementRequest);
 		}
 		
-		int status = patientService.patientEnrollement(patient,contacts,insurance);
-		DrResponse response = new DrResponse();
-		if(status > 0){
+		Patient patientResponse = patientService.patientEnrollement(patient,contacts,insurance);
+		PatientResponse response = new PatientResponse();
+		if(patientResponse != null){
 			response.setStatus(200);
 			response.setMessage("Patient Enrollement/Registration is  Succesfull ");
+			response.setPatientId(patientResponse.getPatientId());
+			response.setPatientName(patientResponse.getPatientName());
+			response.setPatientContact(patientResponse.getContacts());
+			patientResponse.getContacts().setPatient(null);
+			response.setPatientInsurance(patientResponse.getInsurance());
+			patientResponse.getInsurance().setPatient(null);
+			logger.info("patient enrollement/updation is success");
+			
 		}else {
 			response.setStatus(400);
 			response.setMessage("Patient Enrollement/Registration Failed");
+			logger.info("patient enrollement/updation failed");
 		}
 		return Response.ok(response).build();
 	}
