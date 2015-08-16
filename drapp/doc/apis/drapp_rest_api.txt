@@ -47,7 +47,44 @@ Request:
 Response:
 {"message":"Patient Enrollement Succesfull","status":200}
 
--------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+desc : patient updation api
+method: post
+url : http://localhost:8080/drapp-rest/PatientService/enroll
+Note: difference in patientEnrollement and updation api is enrollment will not have patientId,contactId,insuranceId
+Request:
+{
+    "patientName":"Patient34",
+    "patientId":34,
+    "patientContacts":{
+        "contactId":36,
+		"emailId":"patient34@gmail.com",
+		"homePhone":"1234567890",
+		"mobilePhone":"11111",
+		"patientCaregiver":"patient_Parent",
+		"street":"Main Street",
+		"state":"Telengana",
+		"city":"Hyderabad",
+		"zip":"500050",
+		"contactType":"email"
+		},
+	"insuranceDetails":{
+        "insuranceId":21,
+		"dateofBirth":"10/10/2001",
+		"insuranceProvider":"wipro",
+		"insuranceNumber":1000,
+		"insuranceGroup":"General",
+		"employerName":"Wipro",
+		"employerAddress":"Wipro,Hyderabad"
+		
+	}
+}
+
+Response :
+
+{"message":"Patient Enrollement/Registration is  Succesfull ","status":200,"patientId":34,"patientName":"Patient34","patientContact":{"contactId":36,"emailId":"patient34@gmail.com","homePhone":1234567890,"mobilePhone":11111,"patientCaregiver":"patient_Parent","street":"Main Street","state":"Telengana","city":"Hyderabad","zip":null,"contactType":"email","patient":null},"patientInsurance":{"insuranceId":21,"dateofBirth":"10/10/2001","insuranceProvider":"wipro","insuranceNumber":1000,"insuranceGroup":"General","employerName":"Wipro","employerAddress":"Wipro,Hyderabad","patient":null}}
+
+-----------------------------------------------------------------------------------------
 description : get patient details by patientId
 url : http://localhost:8080/drapp-rest/PatientService/patient/id/22
 
