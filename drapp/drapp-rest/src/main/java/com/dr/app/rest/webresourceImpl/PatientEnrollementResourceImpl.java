@@ -33,8 +33,15 @@ public class PatientEnrollementResourceImpl implements PatientResource{
 	public Response patientEnrollement(PatientEnrollementRequest patientEnrollementRequest) {
 		logger.info("Start of PatientEnrollement service");
 		Patient patient = patientRequestConverters.getPatientFromPatientWebRequest(patientEnrollementRequest);
-		Contacts contacts = patientRequestConverters.getPatientContacts(patientEnrollementRequest);
-		Insurance insurance = patientRequestConverters.getPatientInsuranceDetails(patientEnrollementRequest);
+		Contacts contacts = null;
+		Insurance insurance = null;
+		if(patientEnrollementRequest.getPatientContacts() != null){
+			contacts = patientRequestConverters.getPatientContacts(patientEnrollementRequest);
+		}
+		if(patientEnrollementRequest.getInsuranceDetails() != null){
+			insurance = patientRequestConverters.getPatientInsuranceDetails(patientEnrollementRequest);
+		}
+		
 		int status = patientService.patientEnrollement(patient,contacts,insurance);
 		DrResponse response = new DrResponse();
 		if(status > 0){

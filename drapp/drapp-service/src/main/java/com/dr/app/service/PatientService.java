@@ -28,9 +28,19 @@ public class PatientService {
 		logger.info("start of patient enrollement with patient name:"+patient.getPatientName());
 		patient.setContacts(contacts);
 		patient.setInsurance(insurance);
-		contacts.setPatient(patient);
-		insurance.setPatient(patient);
-		Patient patientResponse = patientRepository.save(patient);
+		if(contacts != null){
+			contacts.setPatient(patient);
+		}
+		if(insurance != null){
+			insurance.setPatient(patient);
+		}
+		Patient patientResponse = null;
+		if(patient.getPatientId() != null){
+			patientResponse = patientRepository.save(patient);
+		}else{
+			patientResponse = patientRepository.save(patient);
+		}
+		
 		if(patientResponse != null){
 			logger.info("Patient enrollement success for patient name : "+patient.getPatientName());
 			return 200;
