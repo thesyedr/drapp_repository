@@ -109,4 +109,25 @@ public class PatientEnrollementResourceImpl implements PatientResource{
 		logger.info("Sending the Response for available patients");
 		return Response.ok(patientsReponse).build();
 	}
+
+	@Override
+	public Response getPatientRecordByName(String patientName) {
+		
+		logger.info("Request processing started for getting patient record by name for patient : "+patientName);
+		Patient patient = patientService.getPatientDetailsByName(patientName);
+		PatientResponse patientResponse = new PatientResponse();
+		if(patient != null){
+			patientResponse.setStatus(200);
+			patientResponse.setMessage("Patient Record Recieved");
+			patientResponse.setPatientId(patient.getPatientId());
+			patientResponse.setPatientName(patient.getPatientName());
+			patientResponse.setPatientContact(patient.getContacts());
+			patientResponse.setPatientInsurance(patient.getInsurance());
+		}else{
+			patientResponse.setStatus(401);
+			patientResponse.setMessage("Patient record not available");
+		}
+		logger.info("Sending patient record response for patient by name service for patient : "+patientName);
+		return Response.ok(patientResponse).build();
+	}
 }

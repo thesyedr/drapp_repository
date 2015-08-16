@@ -34,6 +34,8 @@ public class SelectParentContactsInsurance {
 		for(Contacts contacts : results2){
 			System.out.println("Patient Name: "+contacts.getPatient().getPatientName()+"  , Email : "+contacts.getEmailId()+"  , Insurance Provider :  "+contacts.getPatient().getInsurance().getInsuranceProvider());
 		}
+		
+		
 		em.close();
 		emf.close();
 

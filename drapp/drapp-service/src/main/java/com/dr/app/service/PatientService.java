@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +15,7 @@ import com.dr.app.repo.repository.PatientRepository;
 
 
 @Service("patientService")
-@Transactional
+@Transactional(readOnly = true)
 public class PatientService {
 	
 	private static final Logger logger = Logger.getLogger(PatientService.class);
@@ -52,6 +53,18 @@ public class PatientService {
 		List<Patient> patientsList = patientRepository.findAll();
 		logger.info("Returning patient records : "+patientsList.size());
 		return patientsList;
+	}
+	
+	@Transactional(readOnly=true)
+	public Patient getPatientDetailsByName(String patientName){
+		
+		logger.info("Fetching the patient details by patientName for patient : "+patientName);
+		Patient patient = patientRepository.patientName(patientName);
+		logger.info("Patient object retrieved for patient : "+patientName);
+		patient.getContacts().setPatient(null);
+		patient.getInsurance().setPatient(null);
+		return patient;
+		
 	}
 
 }

@@ -24,11 +24,16 @@ public interface PatientResource {
 
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	@Path("/patient/{patientId}")
+	@Path("/patient/id/{patientId}")
 	public Response getPatientRecordById(@PathParam("patientId") String patientId);
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	@Path("/patients")
 	public Response getAllPatients();
+	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/patient/name/{patientName}")
+	public Response getPatientRecordByName(@PathParam("patientName") String patientName);
 }
