@@ -36,4 +36,9 @@ public interface PatientResource {
 	@Produces({MediaType.APPLICATION_JSON})
 	@Path("/patient/name/{patientName}")
 	public Response getPatientRecordByName(@PathParam("patientName") String patientName);
+	
+	@POST
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("patient/contacts/{contactId}/{homePhone}/{mobilePhone}")
+	public Response updatePatientPhoneNumbers(@PathParam("contactId") String contactId,@PathParam("homePhone") String homePhone,@PathParam("mobilePhone") String mobilePhone);
 }

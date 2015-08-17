@@ -146,4 +146,24 @@ public class PatientEnrollementResourceImpl implements PatientResource{
 		logger.info("Sending patient record response for patient by name service for patient : "+patientName);
 		return Response.ok(patientResponse).build();
 	}
+
+	@Override
+	public Response updatePatientPhoneNumbers(String contactId,
+			String homePhone, String mobilePhone) {
+		Integer homePh = Integer.parseInt(homePhone);
+		Integer mobilePh = Integer.parseInt(mobilePhone);
+		Integer contactID = Integer.parseInt(contactId);
+		Integer updateStatus = patientService.updatePatientPhoneNumbers(homePh, mobilePh, contactID);
+		DrResponse response = new DrResponse();
+		if(updateStatus > 0){
+			response.setStatus(200);
+			response.setMessage("Record updated");
+		}else{
+			response.setStatus(400);
+			response.setMessage("Record updation failed");
+		}
+		return Response.ok(response).build();
+	}
+	
+	
 }

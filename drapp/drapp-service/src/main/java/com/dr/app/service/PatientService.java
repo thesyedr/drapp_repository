@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dr.app.repo.entity.Contacts;
 import com.dr.app.repo.entity.Insurance;
 import com.dr.app.repo.entity.Patient;
+import com.dr.app.repo.repository.ContactsRepository;
 import com.dr.app.repo.repository.PatientRepository;
 
 
@@ -21,6 +22,9 @@ public class PatientService {
 	private static final Logger logger = Logger.getLogger(PatientService.class);
 	@Autowired
 	private PatientRepository patientRepository;
+	
+	@Autowired
+	private ContactsRepository contactsRepository;
 	
 	/**
 	 * 
@@ -100,6 +104,21 @@ public class PatientService {
 		patient.getInsurance().setPatient(null);
 		return patient;
 		
+	}
+	
+	/**
+	 * 
+	 * @param homePhone
+	 * @param mobilePhone
+	 * @param contactId
+	 * @return
+	 */
+	@Transactional(readOnly = false)
+	public Integer updatePatientPhoneNumbers(Integer homePhone,Integer mobilePhone,Integer contactId){
+		logger.info("Started the Updating patient phone numbers for contact id :"+contactId);
+		Integer updateStatus= contactsRepository.updatePhoneNumbers(homePhone, mobilePhone, contactId);
+		logger.info("Completed the updating patient phone numbers for contact id :"+contactId);
+		return updateStatus;
 	}
 
 }
