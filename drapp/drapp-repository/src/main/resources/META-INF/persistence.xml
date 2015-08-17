@@ -9,11 +9,30 @@
 		<class>com.dr.app.repo.entity.Patient</class>
 		<class>com.dr.app.repo.entity.Contacts</class>
 		<class>com.dr.app.repo.entity.Insurance</class>
+		<!-- <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode> -->
+		<shared-cache-mode>ALL</shared-cache-mode>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/drapp" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="Dost123$" />
+			<!-- Cache setting -->
+			<!-- <property name="hibernate.cache.use_second_level_cache" value="true" />
+			<property name="hibernate.cache.use_query_cache" value="true" />
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.EhCacheProvider" />
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.SingletonEhCacheProvider" />
+			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory" />
+			<property name="hibernate.cache.provider_configuration" value="/ehcache.xml" /> -->
+			<!-- Cache setting ends -->
+			
+			<!-- <property name="hibernate.cache.provider_class"
+		    value="net.sf.ehcache.hibernate.SingletonEhCacheProvider" />
+		   <property name="net.sf.ehcache.configurationResourceName"
+		    value="/ehcache.xml" />
+		   <property name="hibernate.cache.use_query_cache" value="false" />
+		   <property name="hibernate.cache.use_second_level_cache"
+		    value="false" />
+		   <property name="hibernate.generate_statistics" value="true" /> -->
 		</properties>
 	</persistence-unit>
 </persistence>
