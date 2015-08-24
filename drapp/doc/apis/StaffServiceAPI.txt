@@ -1,0 +1,38 @@
+
+
+api : staff authenticaiton
+url : http://localhost:8080/drapp-rest/StaffService/auth
+
+Request : 
+
+{
+    "userName":"staff1",
+    "password":"staff"
+}
+
+Response : 
+
+{
+    "userName":"staff1",
+    "password":"staff",
+    "staffId":123
+}
+-----------------------------------------------------------
+
+api : staff enrollement
+url : http://localhost:8080/drapp-rest/StaffService/enroll
+
+Request :
+
+{
+    "userName":"staff1",
+    "password":"staff"
+}
+
+Response : 
+
+{
+    "userName":"staff1",
+    "password":"staff",
+    "staffId":123
+}
