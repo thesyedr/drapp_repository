@@ -17,13 +17,14 @@
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="Dost123$" />
 			<!-- Cache setting -->
-			<!-- <property name="hibernate.cache.use_second_level_cache" value="true" />
+			<property name="hibernate.cache.use_second_level_cache" value="true" />
 			<property name="hibernate.cache.use_query_cache" value="true" />
 			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.EhCacheProvider" />
 			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.SingletonEhCacheProvider" />
 			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory" />
-			<property name="hibernate.cache.provider_configuration" value="/ehcache.xml" /> -->
-			<!-- Cache setting ends -->
+			<property name="hibernate.cache.provider_configuration" value="/ehcache.xml" />
+			<property name="hibernate.generate_statistics" value="true" />
+			<!--Cache setting ends -->
 			
 			<!-- <property name="hibernate.cache.provider_class"
 		    value="net.sf.ehcache.hibernate.SingletonEhCacheProvider" />
