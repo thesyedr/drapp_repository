@@ -22,7 +22,7 @@ public class SignupResourceImpl implements SignupResource{
 	public Response doEnrollement(SignupRequest signupRequest) {
 
 		logger.info("Start of doEnrollement Service");
-		logger.info("checking the user exists with the given id or not for username : "+signupRequest.getUsername());
+		logger.info("checking the user exists with the given id or not for username : "+signupRequest.getUserName());
 		User user = SignupConverters.convertSignupRequestToUserEntity(signupRequest);
 		logger.debug("SignupRequest converted to User entity");
 		logger.info("calling user registration service");

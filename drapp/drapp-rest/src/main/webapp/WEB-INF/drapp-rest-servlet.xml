@@ -8,6 +8,7 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc" 
 	xmlns:jaxws="http://cxf.apache.org/jaxws"
 	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:jee="http://www.springframework.org/schema/jee" 
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -22,7 +23,7 @@
  		http://www.springframework.org/schema/mvc
  		http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-        ">
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
 
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<context:component-scan base-package="com.dr.app.rest.*" />
@@ -32,6 +33,7 @@
 	<bean id="userService" class="com.dr.app.service.UserService"/>
 	<bean id="patientService" class="com.dr.app.service.PatientService"/>
 	<bean id="patientRequestConverters" class="com.dr.app.rest.converters.PatientRequestConverters"/>
+	<bean id="staffService" class="com.dr.app.service.impl.StaffServiceImpl"/>
 	
 	
 	<jaxrs:server id="signupResource" address="/signup">
@@ -59,8 +61,20 @@
 		</jaxrs:extensionMappings>
 	</jaxrs:server>
 	
+	<jaxrs:server id="staffResource" address="/StaffService">
+		<jaxrs:providers>
+			<bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+		</jaxrs:providers>
+		<jaxrs:serviceBeans>
+			<ref bean="staffResourceImpl" />
+		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings>
+			<entry key="json" value="application/json" />
+		</jaxrs:extensionMappings>
+	</jaxrs:server>
+	
 	<bean id="signupResourceImpl" class="com.dr.app.rest.webresourceImpl.SignupResourceImpl"/>
 	<bean id="patientResourceImpl" class="com.dr.app.rest.webresourceImpl.PatientEnrollementResourceImpl"/>
-     
-	    
+	<bean id="staffResourceImpl" class="com.dr.app.rest.webresourceImpl.StaffResourceImpl"/>
+	
 </beans>
